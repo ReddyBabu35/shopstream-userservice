@@ -1,0 +1,25 @@
+name: Build & Test
+on:
+  pull_request:
+    branches: [main]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps: 
+      #1. checkout code
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+      #2. Set up JDK
+    - name: Set up JDK
+      uses: actions/setup-java@v3
+      with:
+        java-versoin: '21'
+        distribution: 'temurin'
+
+      #3. Build with Maven
+    - name: Build with maven
+      run: mvn clean install -DskipTests=false
+        
+    
